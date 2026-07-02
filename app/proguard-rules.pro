@@ -1,0 +1,5 @@
+-keep class nl.wachtwoordmanager.** { *; }
+-keep class com.google.gson.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn com.google.gson.**

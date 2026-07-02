@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/achtergrond">
+
+    <!-- AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/oppervlak"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="8dp">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textColor="@color/tekst_primair"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/btnInstellingen"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/ic_settings"
+                android:tint="@color/tekst_primair"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/instellingen"/>
+
+            <Button
+                android:id="@+id/btnVergrendel"
+                style="@style/KnopOmlijnd"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/vergrendelen"
+                android:textSize="12sp"
+                android:paddingHorizontal="12dp"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <!-- Zoekbalk -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TekstVeld"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/zoeken"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp"
+            app:startIconDrawable="@android:drawable/ic_menu_search"
+            app:startIconTint="@color/tekst_secundair">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etZoeken"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:inputType="text"
+                android:imeOptions="actionSearch"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Filter chips -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="12dp"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAlle"
+                style="@style/FilterChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/alle"
+                android:checked="true"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFavorieten"
+                style="@style/FilterChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/favorieten"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipWerk"
+                style="@style/FilterChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/categorie_werk"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSociaal"
+                style="@style/FilterChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/categorie_sociaal"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFinancieel"
+                style="@style/FilterChip"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/categorie_financieel"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="@color/rand"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Lege-staat scherm -->
+    <LinearLayout
+        android:id="@+id/layoutLeeg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ImageView
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_key_outline"
+            android:layout_marginBottom="20dp"
+            android:alpha="0.5"/>
+
+        <TextView
+            android:id="@+id/tvLeegTitel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leeg_titel"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/tekst_primair"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvLeegTekst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/leeg_tekst"
+            android:textSize="14sp"
+            android:textColor="@color/tekst_secundair"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <!-- Lijst -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="80dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabNieuw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:text="@string/nieuw_item"
+        android:textColor="@color/op_primair"
+        app:backgroundTint="@color/primair"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/op_primair"
+        app:elevation="4dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

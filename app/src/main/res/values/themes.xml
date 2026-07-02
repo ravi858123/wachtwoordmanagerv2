@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Wachtwoordmanager" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primair</item>
+        <item name="colorOnPrimary">@color/op_primair</item>
+        <item name="colorPrimaryDark">@color/primair_donker</item>
+        <item name="colorPrimaryContainer">@color/primair_licht</item>
+        <item name="colorSecondary">@color/secundair</item>
+        <item name="colorSurface">@color/oppervlak</item>
+        <item name="colorOnSurface">@color/tekst_primair</item>
+        <item name="colorOnSurfaceVariant">@color/tekst_secundair</item>
+        <item name="colorOutline">@color/rand</item>
+        <item name="colorError">@color/fout</item>
+        <item name="android:windowBackground">@color/achtergrond</item>
+        <item name="android:textColorPrimary">@color/tekst_primair</item>
+        <item name="android:textColorSecondary">@color/tekst_secundair</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:statusBarColor">@color/oppervlak</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/oppervlak</item>
+    </style>
+
+    <!-- Knoppen -->
+    <style name="KnopPrimair" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primair</item>
+        <item name="android:textColor">@color/op_primair</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="KnopDestructief" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/fout_achtergrond</item>
+        <item name="android:textColor">@color/fout</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="KnopOmlijnd" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/tekst_primair</item>
+        <item name="strokeColor">@color/rand</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="KnopTekst" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/primair</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Backwards-compatibele aliassen -->
+    <style name="BlauwKnop" parent="KnopPrimair"/>
+    <style name="RoodKnop" parent="KnopDestructief"/>
+    <style name="WitKnop" parent="KnopOmlijnd"/>
+
+    <!-- Tekstvelden -->
+    <style name="TekstVeld" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxStrokeColor">@color/primair</item>
+        <item name="hintTextColor">@color/primair</item>
+        <item name="android:textColorHint">@color/tekst_secundair</item>
+    </style>
+
+    <!-- Kaarten -->
+    <style name="Kaart" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">18dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/rand</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardBackgroundColor">@color/oppervlak</item>
+    </style>
+
+    <!-- Chip voor categorieën / filters -->
+    <style name="FilterChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/oppervlak_variant</item>
+        <item name="android:textColor">@color/tekst_primair</item>
+    </style>
+</resources>

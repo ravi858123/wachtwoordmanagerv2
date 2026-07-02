@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Merkkleuren -->
+    <color name="primair">#4F46E5</color>
+    <color name="primair_donker">#3730A3</color>
+    <color name="primair_licht">#EEECFB</color>
+    <color name="op_primair">#FFFFFF</color>
+    <color name="secundair">#0EA5A4</color>
+
+    <!-- Statuskleuren -->
+    <color name="succes">#15803D</color>
+    <color name="succes_achtergrond">#E7F6EC</color>
+    <color name="waarschuwing">#B45309</color>
+    <color name="waarschuwing_achtergrond">#FDF3E3</color>
+    <color name="fout">#DC2626</color>
+    <color name="fout_achtergrond">#FCEAEA</color>
+
+    <!-- Oppervlakken -->
+    <color name="achtergrond">#F7F7FB</color>
+    <color name="oppervlak">#FFFFFF</color>
+    <color name="oppervlak_variant">#F0EFF7</color>
+    <color name="rand">#E2E1EC</color>
+
+    <!-- Tekst -->
+    <color name="tekst_primair">#1C1B23</color>
+    <color name="tekst_secundair">#6B6878</color>
+    <color name="tekst_tertiair">#9794A3</color>
+
+    <!-- Overig -->
+    <color name="ster_goud">#F5A623</color>
+    <color name="wit">#FFFFFF</color>
+    <color name="zwart">#000000</color>
+    <color name="transparant">#00000000</color>
+    <color name="schaduw_licht">#1A000000</color>
+
+    <!-- Backwards-compatibele aliassen -->
+    <color name="blauw">#4F46E5</color>
+    <color name="blauw_donker">#3730A3</color>
+    <color name="donker">#1C1B23</color>
+    <color name="grijs">#F0EFF7</color>
+    <color name="grijs_tekst">#6B6878</color>
+    <color name="rood">#DC2626</color>
+    <color name="groen">#15803D</color>
+    <color name="selectie">#EEECFB</color>
+
+    <!-- Avatarkleuren voor item-iconen (deterministisch op naam) -->
+    <color name="avatar_1">#4F46E5</color>
+    <color name="avatar_2">#0EA5A4</color>
+    <color name="avatar_3">#DB2777</color>
+    <color name="avatar_4">#D97706</color>
+    <color name="avatar_5">#16A34A</color>
+    <color name="avatar_6">#7C3AED</color>
+    <color name="avatar_7">#0284C7</color>
+    <color name="avatar_8">#E11D48</color>
+</resources>

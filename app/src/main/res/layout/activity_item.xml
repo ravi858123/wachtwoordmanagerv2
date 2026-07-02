@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/achtergrond">
+
+    <!-- Topbalk -->
+    <com.google.android.material.card.MaterialCardView
+        app:cardElevation="2dp"
+        app:strokeWidth="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="@color/oppervlak">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="4dp">
+
+            <ImageButton
+                android:id="@+id/btnTerug"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/tekst_primair"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/terug"/>
+
+            <TextView
+                android:id="@+id/tvTitelBalk"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/item_bewerken"
+                android:textColor="@color/tekst_primair"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:paddingStart="4dp"/>
+
+            <ImageButton
+                android:id="@+id/btnFavoriet"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_star_outline"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/favoriet_toggle"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Basisgegevens kaart -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/naam"
+                        android:layout_marginBottom="12dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNaam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/gebruikersnaam"
+                        android:layout_marginBottom="12dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etGebruikersnaam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilWachtwoord"
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/wachtwoord"
+                        app:endIconMode="password_toggle">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etWachtwoord"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:fontFamily="monospace"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Wachtwoordsterkte kaart -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/wachtwoordsterkte"
+                            android:textSize="12sp"
+                            android:textColor="@color/tekst_secundair"/>
+                        <TextView
+                            android:id="@+id/tvSterkte"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/succes"/>
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/pbSterkte"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:max="4"
+                        android:progress="0"
+                        android:progressBackgroundTint="@color/rand"
+                        android:progressTint="@color/succes"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tvEntropie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:textColor="@color/tekst_tertiair"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Generator kaart -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/lengte"
+                            android:textColor="@color/tekst_secundair"
+                            android:textSize="13sp"/>
+                        <TextView
+                            android:id="@+id/tvLengte"
+                            android:layout_width="32dp"
+                            android:layout_height="wrap_content"
+                            android:text="16"
+                            android:textColor="@color/primair"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/sliderLengte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="8"
+                        android:valueTo="64"
+                        android:value="16"
+                        android:stepSize="1"
+                        android:layout_marginBottom="8dp"
+                        app:thumbColor="@color/primair"
+                        app:trackColorActive="@color/primair"
+                        app:trackColorInactive="@color/rand"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <CheckBox
+                            android:id="@+id/cbSymbolen"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/symbolen"
+                            android:textSize="13sp"
+                            android:checked="true"
+                            android:buttonTint="@color/primair"/>
+                        <CheckBox
+                            android:id="@+id/cbAmbigue"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ambigue_uitsluiten"
+                            android:textSize="11sp"
+                            android:checked="false"
+                            android:buttonTint="@color/primair"/>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnGenereer"
+                        style="@style/KnopPrimair"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:text="@string/genereer"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Overige gegevens -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/url"
+                        android:layout_marginBottom="12dp">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etUrl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textUri"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Categorie spinner als chips -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/categorie"
+                        android:textSize="12sp"
+                        android:textColor="@color/tekst_secundair"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroupCategorie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipAlgemeen"
+                            style="@style/FilterChip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/categorie_algemeen"
+                            android:checked="true"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipWerkCat"
+                            style="@style/FilterChip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/categorie_werk"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipSociaalCat"
+                            style="@style/FilterChip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/categorie_sociaal"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipFinancieelCat"
+                            style="@style/FilterChip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/categorie_financieel"/>
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipOverigCat"
+                            style="@style/FilterChip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/categorie_overig"/>
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/notities">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNotities"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:minLines="3"
+                            android:gravity="top"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- TOTP kaart -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/totp_titel"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/tekst_primair"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/totp_geheim">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etTotp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textVisiblePassword"
+                            android:fontFamily="monospace"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/totp_hint"
+                        android:textSize="11sp"
+                        android:textColor="@color/tekst_tertiair"
+                        android:layout_marginTop="4dp"/>
+
+                    <!-- TOTP weergave (zichtbaar als sleutel ingevuld) -->
+                    <LinearLayout
+                        android:id="@+id/layoutTotpWeergave"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="14dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tvTotpCode"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primair"
+                            android:fontFamily="monospace"
+                            android:letterSpacing="0.15"/>
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/totpTimer"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            app:indicatorColor="@color/primair"
+                            app:trackColor="@color/rand"
+                            app:trackThickness="3dp"
+                            android:max="30"
+                            android:progress="30"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Status banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStatus"
+                app:cardBackgroundColor="@color/succes_achtergrond"
+                app:strokeColor="@color/succes"
+                app:strokeWidth="1dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_check_circle"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="@color/succes"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Actieknoppen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <Button
+                    android:id="@+id/btnKopieer"
+                    style="@style/KnopOmlijnd"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:text="@string/kopieer"
+                    android:layout_marginEnd="8dp"/>
+
+                <Button
+                    android:id="@+id/btnOpslaan"
+                    style="@style/KnopPrimair"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:text="@string/opslaan"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnVerwijder"
+                style="@style/KnopDestructief"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/verwijderen"
+                android:layout_marginBottom="8dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

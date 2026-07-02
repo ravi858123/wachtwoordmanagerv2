@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/achtergrond"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:layout_gravity="center_vertical">
+
+        <!-- Logo + naam -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Kaart"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="4dp"
+            app:strokeWidth="0dp"
+            android:layout_marginBottom="20dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/tekst_primair"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:letterSpacing="-0.02"
+            android:layout_marginBottom="6dp"/>
+
+        <TextView
+            android:id="@+id/tvOndertitel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bestaande_kluis"
+            android:textColor="@color/tekst_secundair"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="36dp"/>
+
+        <!-- Formulier kaart -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Kaart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilWachtwoord"
+                    style="@style/TekstVeld"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hoofdwachtwoord"
+                    android:layout_marginBottom="12dp"
+                    app:endIconMode="password_toggle">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etWachtwoord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:imeOptions="actionDone"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilHerhaal"
+                    style="@style/TekstVeld"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/herhaal"
+                    android:visibility="gone"
+                    app:endIconMode="password_toggle">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHerhaal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:imeOptions="actionDone"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/KnopPrimair"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="@string/openen"
+            android:textSize="15sp"/>
+
+        <!-- Biometrie scheidslijn + knop -->
+        <LinearLayout
+            android:id="@+id/layoutBiometrie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="14dp">
+                <View android:layout_width="0dp" android:layout_height="1dp"
+                    android:layout_weight="1" android:background="@color/rand"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/of"
+                    android:textColor="@color/tekst_tertiair"
+                    android:textSize="12sp"
+                    android:paddingHorizontal="10dp"/>
+                <View android:layout_width="0dp" android:layout_height="1dp"
+                    android:layout_weight="1" android:background="@color/rand"/>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnBiometrie"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_fingerprint"
+                android:background="@color/primair_licht"
+                android:padding="14dp"
+                android:contentDescription="@string/biometrie_ontgrendel"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/achtergrond">
+
+    <!-- Topbalk -->
+    <com.google.android.material.card.MaterialCardView
+        app:cardElevation="2dp"
+        app:strokeWidth="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="@color/oppervlak">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="4dp">
+            <ImageButton
+                android:id="@+id/btnTerug"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:tint="@color/tekst_primair"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/terug"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/instellingen"
+                android:textColor="@color/tekst_primair"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:paddingStart="4dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- UITERLIJK -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thema"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/primair"
+                android:letterSpacing="0.08"
+                android:paddingStart="4dp"
+                android:paddingBottom="6dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+                <RadioGroup
+                    android:id="@+id/rgThema"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <RadioButton android:id="@+id/rbThemaSysteem"
+                        android:layout_width="match_parent" android:layout_height="48dp"
+                        android:text="@string/thema_systeem"
+                        android:paddingHorizontal="16dp"
+                        android:buttonTint="@color/primair" android:checked="true"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                    <RadioButton android:id="@+id/rbThemaLicht"
+                        android:layout_width="match_parent" android:layout_height="48dp"
+                        android:text="@string/thema_licht"
+                        android:paddingHorizontal="16dp"
+                        android:buttonTint="@color/primair"/>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                    <RadioButton android:id="@+id/rbThemaDonker"
+                        android:layout_width="match_parent" android:layout_height="48dp"
+                        android:text="@string/thema_donker"
+                        android:paddingHorizontal="16dp"
+                        android:buttonTint="@color/primair"/>
+                </RadioGroup>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- BEVEILIGING -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/beveiliging"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/primair"
+                android:letterSpacing="0.08"
+                android:paddingStart="4dp"
+                android:paddingBottom="6dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Biometrie -->
+                    <LinearLayout
+                        android:id="@+id/rowBiometrie"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/biometrie_inschakelen"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchBiometrie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:thumbTint="@color/primair"
+                            android:trackTint="@color/primair_licht"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+
+                    <!-- Scherm beveiligen -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/scherm_beveiligen"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/tekst_primair"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/scherm_beveiligen_uitleg"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/tekst_tertiair"
+                                    android:layout_marginTop="2dp"/>
+                            </LinearLayout>
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/switchScherm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:thumbTint="@color/primair"
+                                android:trackTint="@color/primair_licht"
+                                android:checked="true"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+
+                    <!-- Auto vergrendel -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/auto_vergrendel"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <Spinner
+                            android:id="@+id/spinnerAutoVergrendel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primair"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+
+                    <!-- Klembord wissen -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/klembord_wissen"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <Spinner
+                            android:id="@+id/spinnerKlembord"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primair"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- WACHTWOORD WIJZIGEN -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/primair"
+                android:letterSpacing="0.08"
+                android:paddingStart="4dp"
+                android:paddingBottom="6dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/huidig_wachtwoord"
+                        android:layout_marginBottom="10dp"
+                        app:endIconMode="password_toggle">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etHuidig"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nieuw_wachtwoord"
+                        android:layout_marginBottom="10dp"
+                        app:endIconMode="password_toggle">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNieuw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/TekstVeld"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nieuw_wachtwoord_herhaal"
+                        android:layout_marginBottom="12dp"
+                        app:endIconMode="password_toggle">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etNieuwHerhaal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnWijzig"
+                        style="@style/KnopPrimair"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="@string/wijzig"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- GEGEVENSBEHEER -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gegevensbeheer"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="@color/primair"
+                android:letterSpacing="0.08"
+                android:paddingStart="4dp"
+                android:paddingBottom="6dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Kaart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/rowBackup"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp"
+                            android:src="@drawable/ic_backup" android:layout_marginEnd="14dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/backup_maken"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowHerstel"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp"
+                            android:src="@drawable/ic_restore" android:layout_marginEnd="14dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/backup_herstellen"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

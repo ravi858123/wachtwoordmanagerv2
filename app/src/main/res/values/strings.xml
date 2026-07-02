@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wachtwoordmanager</string>
+
+    <!-- Login -->
+    <string name="hoofdwachtwoord">Hoofdwachtwoord</string>
+    <string name="herhaal">Herhaal wachtwoord</string>
+    <string name="openen">Ontgrendelen</string>
+    <string name="aanmaken">Kluis aanmaken</string>
+    <string name="nieuwe_kluis">Maak een hoofdwachtwoord aan om te beginnen.</string>
+    <string name="bestaande_kluis">Voer je hoofdwachtwoord in.</string>
+    <string name="fout_wachtwoord">Verkeerd hoofdwachtwoord</string>
+    <string name="fout_herhaal">Wachtwoorden komen niet overeen</string>
+    <string name="fout_kort">Minimaal 8 tekens vereist</string>
+    <string name="of">of</string>
+    <string name="biometrie_ontgrendel">Ontgrendel met vingerafdruk</string>
+    <string name="biometrie_titel">Wachtwoordmanager ontgrendelen</string>
+    <string name="biometrie_subtitel">Bevestig je identiteit om verder te gaan</string>
+    <string name="biometrie_geannuleerd">Biometrische controle geannuleerd</string>
+    <string name="biometrie_niet_beschikbaar">Biometrische ontgrendeling is niet beschikbaar op dit toestel</string>
+    <string name="biometrie_mislukt">Biometrische controle mislukt, gebruik je hoofdwachtwoord</string>
+
+    <!-- Hoofdscherm -->
+    <string name="zoeken">Zoeken op naam, gebruiker of url…</string>
+    <string name="nieuw_item">Nieuw item</string>
+    <string name="vergrendelen">Vergrendelen</string>
+    <string name="instellingen">Instellingen</string>
+    <string name="alle">Alle</string>
+    <string name="favorieten">Favorieten</string>
+    <string name="leeg_titel">Nog geen wachtwoorden</string>
+    <string name="leeg_tekst">Tik op \'Nieuw item\' om je eerste wachtwoord veilig op te slaan.</string>
+    <string name="geen_resultaten">Geen items gevonden</string>
+    <string name="item_verwijderd">Item verwijderd</string>
+    <string name="ongedaan_maken">Ongedaan maken</string>
+    <string name="items_aantal">%1$d items</string>
+
+    <!-- Itemscherm -->
+    <string name="naam">Naam</string>
+    <string name="gebruikersnaam">Gebruikersnaam / e-mail</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="url">Website / URL</string>
+    <string name="notities">Notities</string>
+    <string name="categorie">Categorie</string>
+    <string name="categorie_algemeen">Algemeen</string>
+    <string name="categorie_werk">Werk</string>
+    <string name="categorie_sociaal">Sociale media</string>
+    <string name="categorie_financieel">Financieel</string>
+    <string name="categorie_overig">Overig</string>
+    <string name="opslaan">Opslaan</string>
+    <string name="verwijderen">Verwijderen</string>
+    <string name="kopieer">Kopieer</string>
+    <string name="genereer">Genereer</string>
+    <string name="gekopieerd">Gekopieerd! Wordt automatisch gewist.</string>
+    <string name="opgeslagen">✓ Opgeslagen</string>
+    <string name="verwijder_bevestig">Wil je dit item definitief verwijderen?</string>
+    <string name="ja">Ja</string>
+    <string name="nee">Nee</string>
+    <string name="symbolen">Symbolen</string>
+    <string name="lengte">Lengte</string>
+    <string name="toon_wachtwoord">Toon</string>
+    <string name="favoriet_toggle">Markeer als favoriet</string>
+    <string name="ambigue_uitsluiten">Verwarrende tekens uitsluiten (O,0,l,1)</string>
+    <string name="nieuw_item_titel">Nieuw item</string>
+    <string name="item_bewerken">Item bewerken</string>
+
+    <!-- Wachtwoordsterkte -->
+    <string name="wachtwoordsterkte">Sterkte</string>
+    <string name="sterkte_zeer_zwak">Zeer zwak</string>
+    <string name="sterkte_zwak">Zwak</string>
+    <string name="sterkte_redelijk">Redelijk</string>
+    <string name="sterkte_sterk">Sterk</string>
+    <string name="sterkte_zeer_sterk">Zeer sterk</string>
+    <string name="entropie_bits">~%1$d bits entropie</string>
+    <string name="hergebruikt_waarschuwing">Veelvoorkomend of voorspelbaar patroon</string>
+
+    <!-- TOTP -->
+    <string name="totp_titel">Tweestapsverificatie (TOTP)</string>
+    <string name="totp_geheim">Geheime sleutel (optioneel)</string>
+    <string name="totp_hint">Plak hier de Base32-sleutel uit de 2FA-instellingen van de website</string>
+    <string name="totp_ongeldig">Ongeldige TOTP-sleutel</string>
+    <string name="vervalt_over">Vervalt over %1$ds</string>
+
+    <!-- Instellingen -->
+    <string name="thema">Thema</string>
+    <string name="thema_systeem">Systeem</string>
+    <string name="thema_licht">Licht</string>
+    <string name="thema_donker">Donker</string>
+    <string name="beveiliging">Beveiliging</string>
+    <string name="biometrie_inschakelen">Ontgrendelen met vingerafdruk</string>
+    <string name="auto_vergrendel">Automatisch vergrendelen</string>
+    <string name="auto_vergrendel_direct">Direct bij verlaten app</string>
+    <string name="auto_vergrendel_1">Na 1 minuut</string>
+    <string name="auto_vergrendel_5">Na 5 minuten</string>
+    <string name="auto_vergrendel_15">Na 15 minuten</string>
+    <string name="auto_vergrendel_nooit">Nooit</string>
+    <string name="klembord_wissen">Klembord automatisch wissen</string>
+    <string name="klembord_10">Na 10 seconden</string>
+    <string name="klembord_30">Na 30 seconden</string>
+    <string name="klembord_60">Na 60 seconden</string>
+    <string name="klembord_nooit">Niet automatisch wissen</string>
+    <string name="scherm_beveiligen">Schermafbeeldingen blokkeren</string>
+    <string name="scherm_beveiligen_uitleg">Voorkomt screenshots en verbergt de inhoud in recente apps</string>
+
+    <string name="account">Account</string>
+    <string name="hoofdwachtwoord_wijzigen">Hoofdwachtwoord wijzigen</string>
+    <string name="huidig_wachtwoord">Huidig hoofdwachtwoord</string>
+    <string name="nieuw_wachtwoord">Nieuw hoofdwachtwoord</string>
+    <string name="nieuw_wachtwoord_herhaal">Herhaal nieuw wachtwoord</string>
+    <string name="wijzig">Wijzigen</string>
+    <string name="annuleren">Annuleren</string>
+    <string name="wachtwoord_gewijzigd">Hoofdwachtwoord gewijzigd</string>
+    <string name="fout_huidig_wachtwoord">Huidig wachtwoord is onjuist</string>
+
+    <string name="gegevensbeheer">Gegevensbeheer</string>
+    <string name="backup_maken">Versleutelde back-up exporteren</string>
+    <string name="backup_herstellen">Back-up herstellen</string>
+    <string name="backup_wachtwoord_hint">Back-upwachtwoord</string>
+    <string name="backup_wachtwoord_uitleg">Kies een wachtwoord om je back-up te beveiligen. Je hebt dit nodig om de back-up later te herstellen.</string>
+    <string name="backup_gelukt">Back-up succesvol opgeslagen</string>
+    <string name="backup_mislukt">Back-up maken mislukt</string>
+    <string name="herstel_gelukt">%1$d items hersteld</string>
+    <string name="herstel_mislukt">Herstellen mislukt. Controleer het wachtwoord en bestand.</string>
+    <string name="bevestigen">Bevestigen</string>
+    <string name="over_app">Over</string>
+    <string name="versie_label">Versie %1$s</string>
+    <string name="terug">Terug</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primair">#8B83F5</color>
+    <color name="primair_donker">#6E64E8</color>
+    <color name="primair_licht">#2A2752</color>
+    <color name="op_primair">#16142B</color>
+    <color name="secundair">#4FD8D6</color>
+
+    <color name="succes">#4ADE80</color>
+    <color name="succes_achtergrond">#142E1F</color>
+    <color name="waarschuwing">#FBBF24</color>
+    <color name="waarschuwing_achtergrond">#33260D</color>
+    <color name="fout">#F87171</color>
+    <color name="fout_achtergrond">#3A1A1A</color>
+
+    <color name="achtergrond">#131220</color>
+    <color name="oppervlak">#1C1B2E</color>
+    <color name="oppervlak_variant">#262539</color>
+    <color name="rand">#34334A</color>
+
+    <color name="tekst_primair">#F1F0F8</color>
+    <color name="tekst_secundair">#B3B0C4</color>
+    <color name="tekst_tertiair">#8B889C</color>
+
+    <color name="ster_goud">#FBBF24</color>
+    <color name="wit">#FFFFFF</color>
+    <color name="zwart">#000000</color>
+    <color name="transparant">#00000000</color>
+    <color name="schaduw_licht">#33000000</color>
+
+    <color name="blauw">#8B83F5</color>
+    <color name="blauw_donker">#6E64E8</color>
+    <color name="donker">#F1F0F8</color>
+    <color name="grijs">#262539</color>
+    <color name="grijs_tekst">#B3B0C4</color>
+    <color name="rood">#F87171</color>
+    <color name="groen">#4ADE80</color>
+    <color name="selectie">#2A2752</color>
+
+    <color name="avatar_1">#8B83F5</color>
+    <color name="avatar_2">#4FD8D6</color>
+    <color name="avatar_3">#F472B6</color>
+    <color name="avatar_4">#FBBF24</color>
+    <color name="avatar_5">#4ADE80</color>
+    <color name="avatar_6">#A78BFA</color>
+    <color name="avatar_7">#38BDF8</color>
+    <color name="avatar_8">#FB7185</color>
+</resources>
