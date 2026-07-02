@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
     tags:
-      - 'v*'           # bijv. v2.0, v2.1.3 → triggert ook release-job
+      - 'v*'
   pull_request:
     branches: [ main, master ]
 
@@ -27,7 +27,7 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Stel Gradle in (cache + build-scan)
+      - name: Stel Gradle in
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: wrapper
@@ -35,10 +35,9 @@ jobs:
       - name: Maak gradlew uitvoerbaar
         run: chmod +x gradlew
 
-      - name: Compileer (debug)
+      - name: Compileer debug-APK
         run: ./gradlew assembleDebug --stacktrace
 
-      # Versienummer uit build.gradle halen voor artifact-naam
       - name: Lees versienaam
         id: versie
         run: |
@@ -62,7 +61,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
 
     permissions:
-      contents: write   # nodig voor het aanmaken van releases
+      contents: write
 
     steps:
       - name: Checkout broncode
@@ -83,30 +82,35 @@ jobs:
       - name: Maak gradlew uitvoerbaar
         run: chmod +x gradlew
 
-      # ── Optioneel: signeer de release-APK met een keystore ──
-      # Zet KEYSTORE_BASE64, KEY_ALIAS, KEY_PASSWORD, STORE_PASSWORD
-      # als GitHub Actions Secrets in je repo-instellingen.
-      - name: Decodeer keystore (indien aanwezig)
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+      # Decodeer keystore als het Secret aanwezig is
+      - name: Decodeer keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > keystore.jks
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 --decode > keystore.jks
+            echo "KEYSTORE_AANWEZIG=true" >> $GITHUB_ENV
+          else
+            echo "KEYSTORE_AANWEZIG=false" >> $GITHUB_ENV
+          fi
 
       - name: Compileer release-APK
         env:
-          KEYSTORE_PATH: ${{ secrets.KEYSTORE_BASE64 != '' && 'keystore.jks' || '' }}
-          KEY_ALIAS:     ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD:  ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS:      ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD:   ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
         run: ./gradlew assembleRelease --stacktrace
 
-      - name: Hernoem APK naar versie-tag
+      - name: Hernoem APK
         run: |
           TAG=${GITHUB_REF#refs/tags/}
-          mv app/build/outputs/apk/release/app-release*.apk \
-             app/build/outputs/apk/release/wachtwoordmanager-${TAG}.apk || true
-          # Unsigned fallback
-          mv app/build/outputs/apk/release/app-release-unsigned.apk \
-             app/build/outputs/apk/release/wachtwoordmanager-${TAG}-unsigned.apk 2>/dev/null || true
+          SIGNED=app/build/outputs/apk/release/app-release.apk
+          UNSIGNED=app/build/outputs/apk/release/app-release-unsigned.apk
+          if [ -f "$SIGNED" ]; then
+            mv "$SIGNED" app/build/outputs/apk/release/wachtwoordmanager-${TAG}.apk
+          elif [ -f "$UNSIGNED" ]; then
+            mv "$UNSIGNED" app/build/outputs/apk/release/wachtwoordmanager-${TAG}-unsigned.apk
+          fi
 
       - name: Publiceer GitHub Release
         uses: softprops/action-gh-release@v2
@@ -117,14 +121,11 @@ jobs:
 
             ### Installeren
             1. Download de APK hieronder
-            2. Schakel *Installatie uit onbekende bronnen* in op je Android-toestel
+            2. Schakel *Installatie uit onbekende bronnen* in op je toestel
             3. Open de APK en installeer
 
             ### Wijzigingen
-            _Zie [CHANGELOG.md](CHANGELOG.md) of de commit-historie voor details._
-
-            ---
-            > ⚠️ Dit is een zelf-gebouwde APK. Controleer altijd de bron voordat je installeert.
+            _Zie de commit-historie voor details._
           draft: false
           prerelease: ${{ contains(github.ref_name, '-beta') || contains(github.ref_name, '-rc') }}
           files: app/build/outputs/apk/release/wachtwoordmanager-*.apk
