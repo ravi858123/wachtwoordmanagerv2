@@ -53,7 +53,7 @@
                 android:layout_height="36dp"
                 android:text="@string/vergrendelen"
                 android:textSize="12sp"
-                android:paddingHorizontal="12dp"
+                android:paddingStart="12dp" android:paddingEnd="12dp"
                 android:layout_marginStart="4dp"/>
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/zoeken"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
             android:layout_marginBottom="12dp"
             app:startIconDrawable="@android:drawable/ic_menu_search"
             app:startIconTint="@color/tekst_secundair">
@@ -80,7 +80,7 @@
             android:id="@+id/chipGroupFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
             android:paddingBottom="12dp"
             app:singleSelection="true"
             app:selectionRequired="true">

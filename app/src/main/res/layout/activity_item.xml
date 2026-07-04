@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingHorizontal="4dp">
+            android:paddingStart="4dp" android:paddingEnd="4dp">
 
             <ImageButton
                 android:id="@+id/btnTerug"

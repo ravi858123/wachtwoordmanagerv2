@@ -130,7 +130,7 @@
                     android:text="@string/of"
                     android:textColor="@color/tekst_tertiair"
                     android:textSize="12sp"
-                    android:paddingHorizontal="10dp"/>
+                    android:paddingStart="10dp" android:paddingEnd="10dp"/>
                 <View android:layout_width="0dp" android:layout_height="1dp"
                     android:layout_weight="1" android:background="@color/rand"/>
             </LinearLayout>

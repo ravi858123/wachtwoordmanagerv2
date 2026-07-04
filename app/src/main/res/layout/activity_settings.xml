@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingHorizontal="4dp">
+            android:paddingStart="4dp" android:paddingEnd="4dp">
             <ImageButton
                 android:id="@+id/btnTerug"
                 android:layout_width="48dp"
@@ -76,21 +76,21 @@
                     <RadioButton android:id="@+id/rbThemaSysteem"
                         android:layout_width="match_parent" android:layout_height="48dp"
                         android:text="@string/thema_systeem"
-                        android:paddingHorizontal="16dp"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
                         android:buttonTint="@color/primair" android:checked="true"/>
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
                     <RadioButton android:id="@+id/rbThemaLicht"
                         android:layout_width="match_parent" android:layout_height="48dp"
                         android:text="@string/thema_licht"
-                        android:paddingHorizontal="16dp"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
                         android:buttonTint="@color/primair"/>
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
                     <RadioButton android:id="@+id/rbThemaDonker"
                         android:layout_width="match_parent" android:layout_height="48dp"
                         android:text="@string/thema_donker"
-                        android:paddingHorizontal="16dp"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
                         android:buttonTint="@color/primair"/>
                 </RadioGroup>
             </com.google.android.material.card.MaterialCardView>
@@ -124,7 +124,7 @@
                         android:layout_height="56dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp">
+                        android:paddingStart="16dp" android:paddingEnd="16dp">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -141,15 +141,15 @@
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
 
                     <!-- Scherm beveiligen -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="10dp">
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
 
                     <!-- Auto vergrendel -->
                     <LinearLayout
@@ -193,7 +193,7 @@
                         android:layout_height="56dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp">
+                        android:paddingStart="16dp" android:paddingEnd="16dp">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
 
                     <!-- Klembord wissen -->
                     <LinearLayout
@@ -217,7 +217,7 @@
                         android:layout_height="56dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp">
+                        android:paddingStart="16dp" android:paddingEnd="16dp">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -336,7 +336,7 @@
                         android:layout_height="56dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
                         android:background="?attr/selectableItemBackground">
                         <ImageView android:layout_width="22dp" android:layout_height="22dp"
                             android:src="@drawable/ic_backup" android:layout_marginEnd="14dp"/>
@@ -352,7 +352,7 @@
                     </LinearLayout>
 
                     <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="@color/rand" android:marginHorizontal="16dp"/>
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
 
                     <LinearLayout
                         android:id="@+id/rowHerstel"
@@ -360,7 +360,7 @@
                         android:layout_height="56dp"
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
-                        android:paddingHorizontal="16dp"
+                        android:paddingStart="16dp" android:paddingEnd="16dp"
                         android:background="?attr/selectableItemBackground">
                         <ImageView android:layout_width="22dp" android:layout_height="22dp"
                             android:src="@drawable/ic_restore" android:layout_marginEnd="14dp"/>
