@@ -8,32 +8,72 @@ on:
   pull_request:
     branches: [ main, master ]
 
+# Annuleer lopende runs op dezelfde branch bij een nieuwe push
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.caching=true -Xmx2g"
+
 jobs:
   # ─────────────────────────────────────────────
-  #  1. Build (altijd: push + PR)
+  #  1. Build + Lint (altijd: push + PR)
   # ─────────────────────────────────────────────
   build:
     name: Build APK
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    outputs:
+      versie: ${{ steps.versie.outputs.naam }}
 
     steps:
       - name: Checkout broncode
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # volledige history voor versienummering
 
       - name: Stel JDK 17 in
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Stel Gradle in
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: wrapper
+      - name: Download gradle-wrapper.jar
+        run: |
+          GRADLE_VERSION=$(grep distributionUrl gradle/wrapper/gradle-wrapper.properties \
+            | grep -oP '\d+\.\d+(\.\d+)?(?=-bin)')
+          echo "📦 Gradle versie: $GRADLE_VERSION"
+          curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}.0/gradle/wrapper/gradle-wrapper.jar" \
+          || curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}/gradle/wrapper/gradle-wrapper.jar"
+          echo "✅ gradle-wrapper.jar gedownload ($(du -sh gradle/wrapper/gradle-wrapper.jar | cut -f1))"
 
       - name: Maak gradlew uitvoerbaar
         run: chmod +x gradlew
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Lint controle
+        run: ./gradlew lintDebug --stacktrace
+        continue-on-error: true   # lint-waarschuwingen breken de build niet
+
+      - name: Upload lint-rapport
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-rapport
+          path: app/build/reports/lint-results-debug.html
+          retention-days: 7
 
       - name: Compileer debug-APK
         run: ./gradlew assembleDebug --stacktrace
@@ -42,7 +82,16 @@ jobs:
         id: versie
         run: |
           NAAM=$(grep versionName app/build.gradle | head -1 | sed 's/.*"\(.*\)".*/\1/')
+          CODE=$(grep versionCode app/build.gradle | head -1 | grep -oP '\d+')
           echo "naam=$NAAM" >> $GITHUB_OUTPUT
+          echo "code=$CODE" >> $GITHUB_OUTPUT
+          echo "📱 Versienaam: $NAAM (code: $CODE)"
+
+      - name: APK-info
+        run: |
+          APK=$(find app/build/outputs/apk/debug -name "*.apk" | head -1)
+          echo "📦 APK: $APK"
+          echo "📏 Grootte: $(du -sh "$APK" | cut -f1)"
 
       - name: Upload debug-APK als artifact
         uses: actions/upload-artifact@v4
@@ -58,6 +107,7 @@ jobs:
     name: Maak GitHub Release
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: startsWith(github.ref, 'refs/tags/v')
 
     permissions:
@@ -72,17 +122,28 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Stel Gradle in
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: wrapper
+      - name: Download gradle-wrapper.jar
+        run: |
+          GRADLE_VERSION=$(grep distributionUrl gradle/wrapper/gradle-wrapper.properties \
+            | grep -oP '\d+\.\d+(\.\d+)?(?=-bin)')
+          curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}.0/gradle/wrapper/gradle-wrapper.jar" \
+          || curl -fsSL -o gradle/wrapper/gradle-wrapper.jar \
+            "https://raw.githubusercontent.com/gradle/gradle/v${GRADLE_VERSION}/gradle/wrapper/gradle-wrapper.jar"
 
       - name: Maak gradlew uitvoerbaar
         run: chmod +x gradlew
 
-      # Decodeer keystore als het Secret aanwezig is
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
       - name: Decodeer keystore
         env:
           KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
@@ -90,8 +151,10 @@ jobs:
           if [ -n "$KEYSTORE_B64" ]; then
             echo "$KEYSTORE_B64" | base64 --decode > keystore.jks
             echo "KEYSTORE_AANWEZIG=true" >> $GITHUB_ENV
+            echo "✅ Keystore geladen"
           else
             echo "KEYSTORE_AANWEZIG=false" >> $GITHUB_ENV
+            echo "⚠️ Geen keystore gevonden — unsigned APK wordt gebouwd"
           fi
 
       - name: Compileer release-APK
@@ -101,6 +164,11 @@ jobs:
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
         run: ./gradlew assembleRelease --stacktrace
 
+      - name: Controleer APK uitvoer
+        run: |
+          echo "=== APK uitvoer ==="
+          find app/build/outputs/apk/release -name "*.apk" -exec ls -lh {} \;
+
       - name: Hernoem APK
         run: |
           TAG=${GITHUB_REF#refs/tags/}
@@ -108,9 +176,33 @@ jobs:
           UNSIGNED=app/build/outputs/apk/release/app-release-unsigned.apk
           if [ -f "$SIGNED" ]; then
             mv "$SIGNED" app/build/outputs/apk/release/wachtwoordmanager-${TAG}.apk
+            echo "APK_NAAM=wachtwoordmanager-${TAG}.apk" >> $GITHUB_ENV
           elif [ -f "$UNSIGNED" ]; then
             mv "$UNSIGNED" app/build/outputs/apk/release/wachtwoordmanager-${TAG}-unsigned.apk
+            echo "APK_NAAM=wachtwoordmanager-${TAG}-unsigned.apk" >> $GITHUB_ENV
+          else
+            echo "❌ Geen APK gevonden!" && exit 1
           fi
+
+      - name: Upload release-APK als artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APK_NAAM }}
+          path: app/build/outputs/apk/release/wachtwoordmanager-*.apk
+          retention-days: 90
+
+      - name: Genereer changelog uit commits
+        id: changelog
+        run: |
+          VORIGE_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -n "$VORIGE_TAG" ]; then
+            LOG=$(git log ${VORIGE_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+          else
+            LOG=$(git log --pretty=format:"- %s" --no-merges | head -20)
+          fi
+          echo "log<<EOF" >> $GITHUB_OUTPUT
+          echo "$LOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Publiceer GitHub Release
         uses: softprops/action-gh-release@v2
@@ -119,13 +211,18 @@ jobs:
           body: |
             ## 📦 Wachtwoordmanager ${{ github.ref_name }}
 
+            ### Wijzigingen
+            ${{ steps.changelog.outputs.log }}
+
+            ---
+
             ### Installeren
             1. Download de APK hieronder
             2. Schakel *Installatie uit onbekende bronnen* in op je toestel
+               *(Instellingen → Apps → Speciale toegang → Onbekende apps)*
             3. Open de APK en installeer
 
-            ### Wijzigingen
-            _Zie de commit-historie voor details._
+            > LET OP: Dit is een zelf-gebouwde APK buiten de Play Store om.
           draft: false
           prerelease: ${{ contains(github.ref_name, '-beta') || contains(github.ref_name, '-rc') }}
           files: app/build/outputs/apk/release/wachtwoordmanager-*.apk
