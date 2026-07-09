@@ -25,7 +25,7 @@
                 android:id="@+id/btnTerug"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@android:drawable/ic_media_previous"
+                android:src="@drawable/ic_back"
                 android:tint="@color/tekst_primair"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/terug"/>

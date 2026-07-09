@@ -1,112 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Donker immersief login-scherm — geeft gevoel van veiligheid -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/achtergrond"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@color/login_achtergrond"
+    android:gravity="center">
 
+    <!-- Spacer boven -->
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <!-- Icoon met glow-ring -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="28dp">
+
+        <!-- Buitenste glow-ring -->
+        <View
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_login_glow"/>
+
+        <!-- Binnenste icoon-cirkel -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_login_icon"/>
+
+        <!-- Schildicoon -->
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_shield"
+            android:tint="@color/accent"/>
+    </FrameLayout>
+
+    <!-- Appnaam -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textColor="@color/tekst_op_donker"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.02"
+        android:layout_marginBottom="6dp"/>
+
+    <!-- Subtitel -->
+    <TextView
+        android:id="@+id/tvOndertitel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/bestaande_kluis"
+        android:textColor="@color/tekst_op_donker_zacht"
+        android:textSize="14sp"
+        android:layout_marginBottom="40dp"/>
+
+    <!-- Formulier -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
-        android:padding="32dp"
-        android:layout_gravity="center_vertical">
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp">
 
-        <!-- Logo + naam -->
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Kaart"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="4dp"
-            app:strokeWidth="0dp"
-            android:layout_marginBottom="20dp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher"/>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/tekst_primair"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:letterSpacing="-0.02"
-            android:layout_marginBottom="6dp"/>
-
-        <TextView
-            android:id="@+id/tvOndertitel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bestaande_kluis"
-            android:textColor="@color/tekst_secundair"
-            android:textSize="14sp"
-            android:gravity="center"
-            android:layout_marginBottom="36dp"/>
-
-        <!-- Formulier kaart -->
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Kaart"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilWachtwoord"
+            style="@style/TekstVeld.Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
+            android:hint="@string/hoofdwachtwoord"
+            android:layout_marginBottom="12dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/tekst_op_donker_zacht">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etWachtwoord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:textColor="@color/tekst_op_donker"
+                android:fontFamily="sans-serif"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilWachtwoord"
-                    style="@style/TekstVeld"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hoofdwachtwoord"
-                    android:layout_marginBottom="12dp"
-                    app:endIconMode="password_toggle">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etWachtwoord"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:imeOptions="actionDone"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilHerhaal"
-                    style="@style/TekstVeld"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/herhaal"
-                    android:visibility="gone"
-                    app:endIconMode="password_toggle">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etHerhaal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:imeOptions="actionDone"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilHerhaal"
+            style="@style/TekstVeld.Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/herhaal"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/tekst_op_donker_zacht">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etHerhaal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:imeOptions="actionDone"
+                android:textColor="@color/tekst_op_donker"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
-            style="@style/KnopPrimair"
+            style="@style/Knop.Login"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="52dp"
             android:text="@string/openen"
-            android:textSize="15sp"/>
+            android:layout_marginTop="4dp"/>
 
-        <!-- Biometrie scheidslijn + knop -->
+        <!-- Biometrie -->
         <LinearLayout
             android:id="@+id/layoutBiometrie"
             android:layout_width="match_parent"
@@ -114,36 +126,51 @@
             android:orientation="vertical"
             android:gravity="center"
             android:visibility="gone"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="14dp">
+                android:layout_marginBottom="16dp">
                 <View android:layout_width="0dp" android:layout_height="1dp"
-                    android:layout_weight="1" android:background="@color/rand"/>
+                    android:layout_weight="1" android:background="#2A2848"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/of"
-                    android:textColor="@color/tekst_tertiair"
+                    android:textColor="#4A4868"
                     android:textSize="12sp"
-                    android:paddingStart="10dp" android:paddingEnd="10dp"/>
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"/>
                 <View android:layout_width="0dp" android:layout_height="1dp"
-                    android:layout_weight="1" android:background="@color/rand"/>
+                    android:layout_weight="1" android:background="#2A2848"/>
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnBiometrie"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:src="@drawable/ic_fingerprint"
-                android:background="@color/primair_licht"
+                android:background="@drawable/bg_login_icon"
                 android:padding="14dp"
+                android:tint="@color/accent"
                 android:contentDescription="@string/biometrie_ontgrendel"/>
         </LinearLayout>
-
     </LinearLayout>
-</ScrollView>
+
+    <!-- Spacer onder -->
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"/>
+
+    <!-- Versienummer onderaan -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:text="Wachtwoordmanager v2"
+        android:textColor="#2A2848"
+        android:textSize="11sp"/>
+
+</LinearLayout>

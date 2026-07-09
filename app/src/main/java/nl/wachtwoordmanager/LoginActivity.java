@@ -146,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void gaVerder() {
         startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.slide_out_left);
         finish();
     }
 }

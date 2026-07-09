@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/achtergrond">
 
-    <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -14,166 +13,197 @@
         android:background="@color/oppervlak"
         app:elevation="0dp">
 
+        <!-- Header: appnaam + acties -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="64dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:paddingStart="20dp"
-            android:paddingEnd="8dp">
+            android:paddingEnd="12dp">
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_marginEnd="10dp"/>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/app_name"
-                android:textColor="@color/tekst_primair"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kluis"
+                    android:textColor="@color/tekst_tertiair"
+                    android:textSize="11sp"
+                    android:letterSpacing="0.06"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/tekst_primair"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02"/>
+            </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnInstellingen"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_settings"
-                android:tint="@color/tekst_primair"
+                android:tint="@color/tekst_secundair"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/instellingen"/>
 
             <Button
                 android:id="@+id/btnVergrendel"
-                style="@style/KnopOmlijnd"
+                style="@style/Knop.Omlijnd"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="@string/vergrendelen"
                 android:textSize="12sp"
-                android:paddingStart="12dp" android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:layout_marginStart="4dp"/>
         </LinearLayout>
 
         <!-- Zoekbalk -->
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/TekstVeld"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/zoeken"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:layout_marginBottom="12dp"
-            app:startIconDrawable="@android:drawable/ic_menu_search"
-            app:startIconTint="@color/tekst_secundair">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etZoeken"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TekstVeld"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:inputType="text"
-                android:imeOptions="actionSearch"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/zoeken"
+                app:startIconDrawable="@android:drawable/ic_menu_search"
+                app:startIconTint="@color/tekst_tertiair">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etZoeken"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
-        <!-- Filter chips -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupFilter"
+        <!-- Filter-tabs (custom, geen chips) -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp" android:paddingEnd="16dp"
-            android:paddingBottom="12dp"
-            app:singleSelection="true"
-            app:selectionRequired="true">
+            android:scrollbars="none"
+            android:layout_marginBottom="4dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipAlle"
-                style="@style/FilterChip"
+            <LinearLayout
+                android:id="@+id/layoutFilterTabs"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/alle"
-                android:checked="true"/>
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFavorieten"
-                style="@style/FilterChip"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/favorieten"/>
+                <!-- Tabs worden programmatisch aangemaakt in MainActivity -->
+            </LinearLayout>
+        </HorizontalScrollView>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipWerk"
-                style="@style/FilterChip"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/categorie_werk"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSociaal"
-                style="@style/FilterChip"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/categorie_sociaal"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipFinancieel"
-                style="@style/FilterChip"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="@string/categorie_financieel"/>
-
-        </com.google.android.material.chip.ChipGroup>
-
+        <!-- Bodem-divider -->
         <View android:layout_width="match_parent" android:layout_height="1dp"
             android:background="@color/rand"/>
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Lege-staat scherm -->
+    <!-- Lege staat -->
     <LinearLayout
         android:id="@+id/layoutLeeg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:padding="40dp"
+        android:padding="48dp"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ImageView
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:src="@drawable/ic_key_outline"
-            android:layout_marginBottom="20dp"
-            android:alpha="0.5"/>
+            android:alpha="0.25"
+            android:layout_marginBottom="16dp"/>
 
         <TextView
             android:id="@+id/tvLeegTitel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/leeg_titel"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             android:textColor="@color/tekst_primair"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="6dp"/>
 
         <TextView
             android:id="@+id/tvLeegTekst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/leeg_tekst"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textColor="@color/tekst_secundair"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.4"/>
     </LinearLayout>
 
-    <!-- Lijst -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvItems"
+    <!-- Lijst in een kaart -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="8dp"
-        android:paddingBottom="80dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="80dp">
+
+                <!-- Kaart die alle items omsluit — één kaart ipv per item -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardLijst"
+                    style="@style/Kaart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/layoutItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Fallback RecyclerView voor als LinearLayout niet werkt -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <!-- FAB -->
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -183,10 +213,12 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
         android:text="@string/nieuw_item"
-        android:textColor="@color/op_primair"
-        app:backgroundTint="@color/primair"
+        android:textColor="@color/op_accent"
+        android:textStyle="bold"
+        app:backgroundTint="@color/accent"
         app:icon="@android:drawable/ic_input_add"
-        app:iconTint="@color/op_primair"
-        app:elevation="4dp"/>
+        app:iconTint="@color/op_accent"
+        app:elevation="6dp"
+        app:strokeWidth="0dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

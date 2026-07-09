@@ -24,7 +24,7 @@
                 android:id="@+id/btnTerug"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@android:drawable/ic_media_previous"
+                android:src="@drawable/ic_back"
                 android:tint="@color/tekst_primair"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/terug"/>
@@ -369,6 +369,55 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/backup_herstellen"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"/>
+                    </LinearLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowPdfExport"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp"
+                            android:src="@drawable/ic_pdf" android:layout_marginEnd="14dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/pdf_exporteren"
+                            android:textSize="14sp"
+                            android:textColor="@color/tekst_primair"/>
+                        <ImageView android:layout_width="18dp" android:layout_height="18dp"
+                            android:src="@drawable/ic_chevron_right"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/rand" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/rowPdfPrint"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:background="?attr/selectableItemBackground">
+                        <ImageView android:layout_width="22dp" android:layout_height="22dp"
+                            android:src="@drawable/ic_print" android:layout_marginEnd="14dp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/pdf_printen"
                             android:textSize="14sp"
                             android:textColor="@color/tekst_primair"/>
                         <ImageView android:layout_width="18dp" android:layout_height="18dp"

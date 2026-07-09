@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Wachtwoordmanager" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primair</item>
-        <item name="colorOnPrimary">@color/op_primair</item>
-        <item name="colorPrimaryDark">@color/primair_donker</item>
-        <item name="colorPrimaryContainer">@color/primair_licht</item>
-        <item name="colorSecondary">@color/secundair</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/op_accent</item>
+        <item name="colorPrimaryDark">@color/accent_donker</item>
+        <item name="colorPrimaryContainer">@color/accent_licht</item>
         <item name="colorSurface">@color/oppervlak</item>
         <item name="colorOnSurface">@color/tekst_primair</item>
         <item name="colorOnSurfaceVariant">@color/tekst_secundair</item>
@@ -13,10 +12,15 @@
         <item name="colorError">@color/fout</item>
         <item name="android:windowBackground">@color/achtergrond</item>
         <item name="android:textColorPrimary">@color/tekst_primair</item>
-        <item name="android:textColorSecondary">@color/tekst_secundair</item>
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:statusBarColor">@color/oppervlak</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/oppervlak</item>
+    </style>
+
+    <style name="Theme.Wachtwoordmanager.Login" parent="Theme.Wachtwoordmanager">
+        <item name="android:windowBackground">@color/login_achtergrond</item>
+        <item name="android:statusBarColor">@color/login_achtergrond</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/login_achtergrond</item>
     </style>
 </resources>

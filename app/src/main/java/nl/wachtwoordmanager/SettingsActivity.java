@@ -25,6 +25,10 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 
+import android.print.PrintManager;
+import androidx.core.content.FileProvider;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -159,6 +163,15 @@ public class SettingsActivity extends AppCompatActivity {
             i.putExtra(Intent.EXTRA_TITLE, "wachtwoordmanager-backup.kwb");
             backupOpslaan.launch(i);
         });
+
+
+        // PDF exporteren
+        ((LinearLayout) findViewById(R.id.rowPdfExport)).setOnClickListener(v ->
+            toonPdfBevestiging(false));
+
+        // PDF printen
+        ((LinearLayout) findViewById(R.id.rowPdfPrint)).setOnClickListener(v ->
+            toonPdfBevestiging(true));
 
         ((LinearLayout) findViewById(R.id.rowHerstel)).setOnClickListener(v -> {
             Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -295,4 +308,45 @@ public class SettingsActivity extends AppCompatActivity {
     private String tekst(TextInputEditText et) {
         return et.getText() != null ? et.getText().toString().trim() : "";
     }
+
+    private void toonPdfBevestiging(boolean printen) {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(getString(R.string.pdf_bevestig_titel))
+            .setMessage(getString(R.string.pdf_bevestig_bericht))
+            .setPositiveButton(printen ? getString(R.string.pdf_printen) : getString(R.string.pdf_exporteren),
+                (d, w) -> { if (printen) startPrinten(); else startPdfExport(); })
+            .setNegativeButton(getString(R.string.annuleren), null)
+            .show();
+    }
+
+    private void startPrinten() {
+        PrintManager pm = (PrintManager) getSystemService(PRINT_SERVICE);
+        if (pm == null) return;
+        pm.print("Wachtwoorden", new PdfExporteur(this, kluis), null);
+    }
+
+    private void startPdfExport() {
+        try {
+            File dir = new File(getCacheDir(), "pdf");
+            if (!dir.exists()) dir.mkdirs();
+            File pdfBestand = new File(dir, "wachtwoorden.pdf");
+
+            PdfExporteur exporteur = new PdfExporteur(this, kluis);
+            exporteur.schrijfNaarBestand(new FileOutputStream(pdfBestand));
+
+            Uri uri = FileProvider.getUriForFile(this,
+                getPackageName() + ".fileprovider", pdfBestand);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, "application/pdf");
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(intent, "Open PDF met"));
+
+        } catch (Exception e) {
+            android.widget.Toast.makeText(this,
+                getString(R.string.pdf_mislukt) + ": " + e.getMessage(),
+                android.widget.Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

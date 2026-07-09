@@ -1,55 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Merkkleuren -->
-    <color name="primair">#4F46E5</color>
-    <color name="primair_donker">#3730A3</color>
-    <color name="primair_licht">#EEECFB</color>
-    <color name="op_primair">#FFFFFF</color>
-    <color name="secundair">#0EA5A4</color>
+    <!-- Merkkleur: één sterke accentkleur, de rest neutraal -->
+    <color name="accent">#5B4FCF</color>
+    <color name="accent_licht">#EEECfB</color>
+    <color name="accent_donker">#3D34A5</color>
+    <color name="op_accent">#FFFFFF</color>
 
-    <!-- Statuskleuren -->
-    <color name="succes">#15803D</color>
-    <color name="succes_achtergrond">#E7F6EC</color>
-    <color name="waarschuwing">#B45309</color>
-    <color name="waarschuwing_achtergrond">#FDF3E3</color>
-    <color name="fout">#DC2626</color>
-    <color name="fout_achtergrond">#FCEAEA</color>
-
-    <!-- Oppervlakken -->
-    <color name="achtergrond">#F7F7FB</color>
+    <!-- Achtergronden -->
+    <color name="achtergrond">#F6F5FB</color>
     <color name="oppervlak">#FFFFFF</color>
-    <color name="oppervlak_variant">#F0EFF7</color>
-    <color name="rand">#E2E1EC</color>
+    <color name="oppervlak_verhoogd">#FFFFFF</color>
+    <color name="login_achtergrond">#0F0E1A</color>
+    <color name="login_oppervlak">#1A1830</color>
+
+    <!-- Rand & scheiding -->
+    <color name="rand">#E8E6F0</color>
+    <color name="scheiding">#F0EFF7</color>
 
     <!-- Tekst -->
-    <color name="tekst_primair">#1C1B23</color>
-    <color name="tekst_secundair">#6B6878</color>
-    <color name="tekst_tertiair">#9794A3</color>
+    <color name="tekst_primair">#16132E</color>
+    <color name="tekst_secundair">#6E6B85</color>
+    <color name="tekst_tertiair">#A8A5BC</color>
+    <color name="tekst_op_donker">#FFFFFF</color>
+    <color name="tekst_op_donker_zacht">#B0AECE</color>
 
-    <!-- Overig -->
-    <color name="ster_goud">#F5A623</color>
+    <!-- Status -->
+    <color name="succes">#16A34A</color>
+    <color name="succes_achtergrond">#DCFCE7</color>
+    <color name="waarschuwing">#D97706</color>
+    <color name="waarschuwing_achtergrond">#FEF3C7</color>
+    <color name="fout">#DC2626</color>
+    <color name="fout_achtergrond">#FEE2E2</color>
+
+    <!-- Sterkte-kleuren -->
+    <color name="sterkte_1">#EF4444</color>
+    <color name="sterkte_2">#F97316</color>
+    <color name="sterkte_3">#EAB308</color>
+    <color name="sterkte_4">#22C55E</color>
+    <color name="sterkte_5">#16A34A</color>
+
+    <!-- Avatar-palet (8 kleuren, saturation gedempter dan v1) -->
+    <color name="avatar_1">#5B4FCF</color>
+    <color name="avatar_2">#0891B2</color>
+    <color name="avatar_3">#BE185D</color>
+    <color name="avatar_4">#B45309</color>
+    <color name="avatar_5">#15803D</color>
+    <color name="avatar_6">#7C3AED</color>
+    <color name="avatar_7">#1D4ED8</color>
+    <color name="avatar_8">#C2410C</color>
+
+    <!-- Categorie-kleuren (gebruikt als badge) -->
+    <color name="cat_algemeen">#5B4FCF</color>
+    <color name="cat_werk">#1D4ED8</color>
+    <color name="cat_sociaal">#BE185D</color>
+    <color name="cat_financieel">#15803D</color>
+    <color name="cat_overig">#6B7280</color>
+
+    <!-- Aliassen voor compatibiliteit -->
+    <color name="primair">@color/accent</color>
+    <color name="primair_licht">@color/accent_licht</color>
+    <color name="primair_donker">@color/accent_donker</color>
+    <color name="op_primair">@color/op_accent</color>
+    <color name="secundair">#0891B2</color>
+    <color name="ster_goud">#F59E0B</color>
     <color name="wit">#FFFFFF</color>
     <color name="zwart">#000000</color>
     <color name="transparant">#00000000</color>
-    <color name="schaduw_licht">#1A000000</color>
-
-    <!-- Backwards-compatibele aliassen -->
-    <color name="blauw">#4F46E5</color>
-    <color name="blauw_donker">#3730A3</color>
-    <color name="donker">#1C1B23</color>
-    <color name="grijs">#F0EFF7</color>
-    <color name="grijs_tekst">#6B6878</color>
-    <color name="rood">#DC2626</color>
-    <color name="groen">#15803D</color>
-    <color name="selectie">#EEECFB</color>
-
-    <!-- Avatarkleuren voor item-iconen (deterministisch op naam) -->
-    <color name="avatar_1">#4F46E5</color>
-    <color name="avatar_2">#0EA5A4</color>
-    <color name="avatar_3">#DB2777</color>
-    <color name="avatar_4">#D97706</color>
-    <color name="avatar_5">#16A34A</color>
-    <color name="avatar_6">#7C3AED</color>
-    <color name="avatar_7">#0284C7</color>
-    <color name="avatar_8">#E11D48</color>
+    <color name="schaduw_licht">#14000000</color>
+    <color name="grijs">@color/scheiding</color>
+    <color name="grijs_tekst">@color/tekst_secundair</color>
+    <color name="rood">@color/fout</color>
+    <color name="groen">@color/succes</color>
+    <color name="selectie">@color/accent_licht</color>
+    <color name="blauw">@color/accent</color>
+    <color name="blauw_donker">@color/accent_donker</color>
+    <color name="donker">@color/tekst_primair</color>
+    <color name="tekst_tertiair_alias">@color/tekst_tertiair</color>
 </resources>

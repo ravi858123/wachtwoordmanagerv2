@@ -124,4 +124,14 @@
     <string name="over_app">Over</string>
     <string name="versie_label">Versie %1$s</string>
     <string name="terug">Terug</string>
+    <!-- PDF export -->
+    <string name="pdf_exporteren">Exporteren als PDF</string>
+    <string name="pdf_printen">Wachtwoorden printen</string>
+    <string name="pdf_gelukt">PDF opgeslagen</string>
+    <string name="pdf_mislukt">PDF exporteren mislukt</string>
+    <string name="pdf_bevestig_titel">PDF exporteren</string>
+    <string name="pdf_bevestig_bericht">Dit exporteert al je wachtwoorden in leesbare tekst naar een PDF. Zorg dat je het bestand veilig bewaart of direct print en daarna verwijdert.</string>
+    <string name="pdf_wachtwoord_beschermd">Wil je de PDF beveiligen met een wachtwoord?</string>
+    <string name="ic_pdf">PDF</string>
+
 </resources>
