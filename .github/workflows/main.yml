@@ -1,2 +1,11 @@
-git tag v2.0
-git push origin v2.0
+name: Android CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/android-release.yml
