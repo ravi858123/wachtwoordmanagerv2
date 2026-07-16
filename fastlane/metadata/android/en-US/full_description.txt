@@ -1,18 +1,16 @@
-Password Manager is a privacy-focused password manager that stores all your
-data locally on your device.
+Password Manager is a privacy-focused password manager that stores all your data locally on your device.
 
 Features:
 
-• AES-256 encryption
-• Biometric authentication
-• TOTP (2FA) support
-• Password generator
-• Search and categories
-• Dark mode
-• Backup and restore
-• No ads
-• No tracking
-• Fully offline
+- AES-256 encryption
+- Biometric authentication
+- TOTP (2FA)
+- Password generator
+- Search and categories
+- Dark mode
+- Backup and restore
+- No ads
+- No tracking
+- Fully offline
 
-Your passwords never leave your device. Only you have access to your stored
-data.
+Your passwords never leave your device.
