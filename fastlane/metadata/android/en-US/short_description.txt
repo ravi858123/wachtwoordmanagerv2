@@ -1,0 +1,1 @@
+Secure local password manager with AES-256, TOTP and biometric unlock
