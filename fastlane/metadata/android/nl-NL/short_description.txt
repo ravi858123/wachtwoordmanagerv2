@@ -1,0 +1,1 @@
+Veilige lokale wachtwoordmanager met AES-256, TOTP en biometrie
