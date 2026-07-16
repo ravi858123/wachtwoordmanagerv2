@@ -1,0 +1,18 @@
+Wachtwoordmanager is een privacyvriendelijke wachtwoordmanager die al je
+gegevens lokaal op je apparaat bewaart.
+
+Functies:
+
+• AES-256 versleuteling
+• Biometrisch ontgrendelen (vingerafdruk of gezichtsherkenning)
+• Ondersteuning voor TOTP (2FA)
+• Wachtwoordgenerator
+• Zoeken en categorieën
+• Donkere modus
+• Back-up en herstel
+• Geen advertenties
+• Geen tracking
+• Werkt volledig offline
+
+Je gegevens verlaten je apparaat niet. Alleen jij hebt toegang tot je
+opgeslagen wachtwoorden.
